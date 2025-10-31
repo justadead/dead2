@@ -1,111 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dead Girl Halloween</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: #0a0a0a;
-            color: #00f0ff;
-            overflow-x: hidden;
-        }
-        @keyframes smoke {
-            0% { transform: translateY(0) scale(1); opacity: 0.5; }
-            50% { transform: translateY(-50px) scale(1.2); opacity: 0.3; }
-            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
-        }
-        .smoke {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(0,255,255,0.2) 0%, transparent 70%);
-            animation: smoke 6s infinite;
-        }
-        .smoke:nth-child(2) { left: 50px; animation-delay: 2s; }
-        .smoke:nth-child(3) { left: 300px; animation-delay: 4s; }
-        .container {
-            text-align: center;
-            padding-top: 100px;
-        }
-        h1 {
-            font-size: 4em;
-            text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 30px #00f0ff;
-            margin-bottom: 20px;
-            animation: blink 1.5s infinite;
-        }
-        @keyframes blink {
-            0%, 50%, 100% { opacity: 1; }
-            25%, 75% { opacity: 0.5; }
-        }
-        .neon-button {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 1.5em;
-            color: #00f0ff;
-            text-decoration: none;
-            border: 2px solid #00f0ff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px #00f0ff;
-            transition: 0.3s;
-        }
-        .neon-button:hover {
-            box-shadow: 0 0 40px #00f0ff, 0 0 80px #00f0ff;
-            transform: scale(1.1);
-        }
-        .skeleton {
-            width: 400px;
-            margin: 50px auto;
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        .pumpkin {
-            position: absolute;
-            width: 50px;
-            animation: fall 5s linear infinite;
-        }
-        @keyframes fall {
-            0% { top: -60px; transform: rotate(0deg); }
-            100% { top: 100vh; transform: rotate(360deg); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dead Girl Halloween</title>
+<style>
+body { margin:0; font-family:Arial,sans-serif; background:#0a0a0a; color:#00f0ff; overflow-x:hidden; cursor:pointer; position:relative; height:100vh; }
+
+@keyframes smoke {0%{transform:translateY(0) scale(1);opacity:0.5;}50%{transform:translateY(-50px) scale(1.2);opacity:0.3;}100%{transform:translateY(-100px) scale(1.5);opacity:0;}}
+.smoke { position:absolute; width:200px; height:200px; background:radial-gradient(circle, rgba(0,255,255,0.2) 0%, transparent 70%); animation:smoke 6s infinite;}
+.smoke:nth-child(2){left:50px; animation-delay:2s;}
+.smoke:nth-child(3){left:300px; animation-delay:4s;}
+
+#lightning { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; background:rgba(148,0,211,0); z-index:0; animation:lightning-flash 5s infinite;}
+@keyframes lightning-flash {0%,95%,100%{background:rgba(148,0,211,0);}96%{background:rgba(148,0,211,0.5);}97%{background:rgba(148,0,211,0);}98%{background:rgba(148,0,211,0.7);}99%{background:rgba(148,0,211,0);}}
+
+.container { text-align:center; padding-top:50px; position:relative; z-index:10;}
+h1 { font-size:4em; text-shadow:0 0 10px #00f0ff,0 0 20px #00f0ff,0 0 30px #00f0ff; margin-bottom:20px; animation:blink 1.5s infinite;}
+@keyframes blink {0%,50%,100%{opacity:1;}25%,75%{opacity:0.5;}}
+
+.neon-button { display:inline-block; padding:15px 30px; font-size:1.5em; color:#00f0ff; text-decoration:none; border:2px solid #00f0ff; border-radius:10px; box-shadow:0 0 20px #00f0ff; transition:0.3s; margin:10px;}
+.neon-button:hover { box-shadow:0 0 40px #00f0ff,0 0 80px #00f0ff; transform:scale(1.1); }
+
+.skeleton { width:400px; margin:50px auto; animation:float 3s ease-in-out infinite; position:relative; z-index:5; }
+@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);} }
+
+.pumpkin { position:absolute; width:50px; top:-60px; animation:fall linear infinite; z-index:1;}
+@keyframes fall {0%{transform:translateY(-60px) rotate(0deg);}100%{transform:translateY(100vh) rotate(360deg);} }
+</style>
 </head>
 <body>
-    <div class="smoke"></div>
-    <div class="smoke"></div>
-    <div class="smoke"></div>
 
-    <div class="container">
-        <h1>Just a Dead Girl</h1>
-        <img src="skeleton-dog-woman.png" alt="Skeleton Dog Woman" class="skeleton">
+<div id="lightning"></div>
 
-        <div style="margin: 30px 0;">
-            <a href="https://x.com/deada55810?s=21" class="neon-button" target="_blank">Follow on X</a>
-        </div>
+<div class="smoke"></div>
+<div class="smoke"></div>
+<div class="smoke"></div>
 
-        <div style="margin-top: 50px;">
-            <a href="#" class="neon-button" id="token-link">Pump Fun Token</a>
-        </div>
-    </div>
+<div class="container">
+<h1>Just a Dead Girl</h1>
 
-    <img src="pumpkin.png" class="pumpkin" style="left: 50px;">
-    <img src="pumpkin.png" class="pumpkin" style="left: 200px; animation-delay: 2s;">
-    <img src="pumpkin.png" class="pumpkin" style="left: 350px; animation-delay: 4s;">
+<div>
+<a href="https://x.com/deada55810?s=21" class="neon-button" target="_blank">Follow on X</a>
+<a href="#" class="neon-button" id="token-link">Pump Fun Token</a>
+</div>
 
-    <!-- Фоновый звук Хэллоуина -->
-    <audio id="halloween-sound" autoplay loop>
-        <source src="halloween-sound.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудио.
-    </audio>
+<img src="skeleton-dog-woman.png" alt="Skeleton Dog Woman" class="skeleton">
+</div>
 
-    <script>
-        const audio = document.getElementById('halloween-sound');
-        audio.volume = 0.3;
-    </script>
+<audio id="halloween-sound" loop>
+<source src="halloween-sound.mp3" type="audio/mpeg">
+Ваш браузер не поддерживает аудио.
+</audio>
+
+<script>
+const audio=document.getElementById('halloween-sound');
+audio.volume=0.3;
+document.body.addEventListener('click',()=>{if(audio.paused) audio.play();},{once:true});
+
+const pumpkinCount=20;
+for(let i=0;i<pumpkinCount;i++){
+    const pumpkin=document.createElement('img');
+    pumpkin.src='pumpkin.png';
+    pumpkin.className='pumpkin';
+    pumpkin.style.left=Math.random()*window.innerWidth+'px';
+    pumpkin.style.animationDuration=(3+Math.random()*5)+'s';
+    pumpkin.style.animationDelay=(Math.random()*5)+'s';
+    document.body.appendChild(pumpkin);
+}
+</script>
+
 </body>
 </html>
